@@ -1,0 +1,141 @@
+/* I fulfilled the requirements as follows:
+ *   1) variables: used to control some colors such as header color, footer color, etc
+ *   2) nesting: used in several areas. for example, the links inside of the nav tag
+ *   3) partials: used to include the custom font
+ *   4) mixins: used the border-radius mixin on the links inside of nav tag as well as
+        on the class .sidebar
+ *   5) inheritance: used to make .title inherit from .subtitle
+ *   6) operators: used to control the size of some elements. for example, in section.left
+        and section.right
+*/
+
+@import "compass/reset";
+@import "font";
+
+$body-color: #FFF;
+$header-color: #BBB;
+$footer-color: #DDD;
+$sidebar-color: #BBB;
+$page-width:1000px;
+$sidebar-width: 400px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+body {
+	background-color:$body-color;
+}
+
+header, nav {
+    background-color: $header-color;
+}
+
+header {
+	padding:20px 20px 5px 20px;
+}
+
+nav {
+	text-align:right;
+	padding:0px 5px 15px 0px;
+
+	a {
+		color:red;
+		font-size:105%;
+		background-color:white;
+		padding:4px 9px;
+		text-decoration:none;
+		font-weight:bold;
+		margin:0px 5px 0px 5px;
+		@include border-radius(5px);
+	}
+}
+
+footer {
+	background-color:$footer-color;
+	text-align:center;
+	padding:5px 0px;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	clear:both;
+}
+
+section {
+	> div {
+		padding:10px;
+	}
+}
+
+section.left {
+	float:left;
+	min-width:($page-width - $sidebar-width);
+	width:($page-width - $sidebar-width) / $page-width * 100%;
+}
+
+section.right {
+	float:right;
+	min-width:$sidebar-width;
+	width:$sidebar-width;
+	text-align:right;
+}
+
+p {
+	padding-top:10px;
+}
+
+.subtitle {
+	font-size:150%;
+	font-family: 'brankovicregular';
+}
+
+.title {
+	@extend .subtitle;
+	max-width:200px;
+}
+
+.form {
+	margin-bottom:10px;
+	width:100%;
+
+	table {
+		border:1px solid black;
+
+		td:nth-child(2) {
+			text-align:right;
+		}
+	}
+}
+
+.sidebar {
+	background-color:$sidebar-color;
+	text-align:center;
+	padding:5px 20px;
+	color:red;
+	width:($sidebar-width - 120px);
+	margin:0px;
+	@include border-radius(5px);
+
+	img {
+		padding:5px 0px;
+	}
+
+	ul {
+		color:red;
+		margin-left:20px;
+		text-align:left;
+		text-decoration:underline;
+
+		li {
+			list-style-type:circle;
+			margin:5px 0px;
+		}
+	}
+}
+
+
